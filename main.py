@@ -1,14 +1,14 @@
 import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 from sklearn.model_selection import StratifiedKFold
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import precision_recall_curve, average_precision_score, accuracy_score, f1_score, precision_score, recall_score, classification_report
 from sklearn.utils.multiclass import unique_labels
 from sklearn.utils import Bunch
 from sklearn.metrics import auc
-import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.model_selection import train_test_split
-import numpy as np
 
 # Function to visualize data
 def visualize_data(dataset, class_column, dataset_name):
