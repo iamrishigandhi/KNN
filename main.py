@@ -13,10 +13,27 @@ from sklearn.model_selection import train_test_split
 # Function to visualize data
 def visualize_data(dataset, class_column, dataset_name):
     sns.set(style="whitegrid")
+
     for column in dataset.columns[:-1]:  # Exclude the class column
-        plt.figure(figsize=(8, 6))
+        plt.figure(figsize=(15, 5))
+
+        # Density Plot
+        plt.subplot(1, 3, 1)
+        sns.kdeplot(dataset[column][dataset[class_column] == 0], label='Class 0', shade=True)
+        sns.kdeplot(dataset[column][dataset[class_column] == 1], label='Class 1', shade=True)
+        plt.title(f"{column} Density Plot - {dataset_name}")
+
+        # Box Plot
+        plt.subplot(1, 3, 2)
         sns.boxplot(x=class_column, y=column, data=dataset)
-        plt.title(f"{column} distribution by {class_column} - {dataset_name}")
+        plt.title(f"{column} Box Plot by {class_column} - {dataset_name}")
+
+        # Violin Plot
+        plt.subplot(1, 3, 3)
+        sns.violinplot(x=class_column, y=column, data=dataset)
+        plt.title(f"{column} Violin Plot by {class_column} - {dataset_name}")
+
+        plt.tight_layout()
         plt.show()
 
 # Function to apply K-nearest neighbors (KNN)
